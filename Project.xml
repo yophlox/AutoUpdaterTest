@@ -3,7 +3,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="A HaxeFlixel Game" file="A HaxeFlixel Game" main="Main" version="1.0.0" company="ProjectOwner" />
+	<app title="AutoUpdater" file="AutoUpdater" main="Main" version="1.0.0" company="YoPhlox" />
 	<app preloader="flixel.system.FlxPreloader" />
 
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
