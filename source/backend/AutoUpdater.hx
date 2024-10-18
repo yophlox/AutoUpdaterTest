@@ -39,7 +39,7 @@ using StringTools;
 
 class AutoUpdater
 {
-    private static inline var VERSION_URL = "https://raw.githubusercontent.com/yophlox/VersionShit/refs/heads/main/VsTyVERSION.txt"; // Replace with your repo and txt file
+    private static inline var VERSION_URL = "https://raw.githubusercontent.com/yophlox/VersionShit/refs/heads/main/version.txt"; // Replace with your repo and txt file
     private static inline var DOWNLOAD_URL = "https://github.com/yophlox/VersionRepo/releases/latest/download/Game.zip"; // Replace with your repo and zip file
     public static inline var CURRENT_VERSION = "1.0.0"; // Replace with your version
     
