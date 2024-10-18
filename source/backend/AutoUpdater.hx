@@ -1,3 +1,26 @@
+/*      
+ * MIT License
+ *
+ * Copyright (c) 2024 YoPhlox
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+ * Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+ * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 package backend;
 
 import haxe.Http;
@@ -16,16 +39,18 @@ using StringTools;
 
 class AutoUpdater
 {
-    private static inline var VERSION_URL = "https://raw.githubusercontent.com/yophlox/VersionRepo/refs/heads/main/version.txt"; // Replace with your repo and txt file
+    private static inline var VERSION_URL = "https://raw.githubusercontent.com/yophlox/VersionShit/refs/heads/main/VsTyVERSION.txt"; // Replace with your repo and txt file
     private static inline var DOWNLOAD_URL = "https://github.com/yophlox/VersionRepo/releases/latest/download/Game.zip"; // Replace with your repo and zip file
     public static inline var CURRENT_VERSION = "1.0.0"; // Replace with your version
+    
+    public static var latestVersion:String = ""; // DON'T TOUCH THIS!
 
     public static function checkForUpdates():Void
     {
         var http = new Http(VERSION_URL);
         
         http.onData = function(data:String) {
-            var latestVersion = StringTools.trim(data);
+            latestVersion = StringTools.trim(data);
             if (isNewerVersion(latestVersion, CURRENT_VERSION)) {
                 showUpdatePrompt(latestVersion);
             }
@@ -35,10 +60,14 @@ class AutoUpdater
             trace("Error checking for updates: " + error);
         }
 
+        trace("Checking for updates...");
+        trace("Latest version: " + latestVersion);
+        trace("Current version: " + CURRENT_VERSION);   
+
         http.request();
     }
 
-    private static function isNewerVersion(latest:String, current:String):Bool
+    public static function isNewerVersion(latest:String, current:String):Bool
     {
         var latestParts = latest.split(".");
         var currentParts = current.split(".");
@@ -86,7 +115,7 @@ class AutoUpdater
         FlxG.state.remove(noButton);
     }
 
-    private static function downloadUpdate():Void
+    public static function downloadUpdate():Void
     {
         trace("Attempting to download from: " + DOWNLOAD_URL);
         var data = downloadWithRedirects(DOWNLOAD_URL);
